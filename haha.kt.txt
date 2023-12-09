@@ -1,0 +1,48 @@
+#include<stdio.h>
+#include<string.h>
+int main(void)
+{
+	int i=0,j=0,n=0,count[100]={0},t=0;
+	char a[100][100],b[100],e,ch;
+	scanf("%d",&n);
+	e=getchar();
+	for(i=0;i<n;i++)
+	{
+	    for(j=0;;j++)
+		{
+			if((ch=getchar())!='\n')
+			{
+				a[i][j]=ch;
+			}
+			else
+			break;
+		}
+		count[i]=j;
+	}
+	for(i=0;i<n-1;i++)
+	{
+		for(j=0;j<n-i-1;j++)
+		{
+			if((strcmp(a[j],a[j+1]))==1)
+			{
+				strcpy(b,a[j]);
+				strcpy(a[j],a[j+1]);
+				strcpy(a[j+1],b);
+				t=count[j];
+				count[j]=count[j+1];
+				count[j+1]=t;
+			}
+		}
+	}
+	for(i=0;i<n;i++)
+	{
+		for(j=0;j<count[i];j++)
+		{
+			printf("%c",a[i][j]);
+			
+		}
+		if(i<n-1)
+		printf("\n");
+	}
+	return 0;
+}
